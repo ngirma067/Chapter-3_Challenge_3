@@ -1,0 +1,280 @@
+/* ============================================
+   Aero Dynamics Weather Widget - FINAL FIX
+   ALL text fully visible including "Wind Speed & Direction"
+   ============================================ */
+
+/* ROOT AND GLOBAL STYLES */
+.root {
+    -fx-background-color: #0a1a2a;
+    -fx-padding: 0;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-min-width: 550px;
+    -fx-min-height: 550px;
+}
+
+/* ========== TOP SECTION ========== */
+.top-section {
+    -fx-background-color: #1a2b3c;
+    -fx-border-color: #f57c00;
+    -fx-border-width: 0 0 2px 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.2, 0, 2);
+    -fx-min-height: 75px;
+}
+
+.company-title {
+    -fx-font-family: 'Arial Narrow', 'Arial', sans-serif;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, #f57c00, 5, 0.5, 0, 0);
+    -fx-padding: 0 20px 0 0;
+    -fx-min-width: 200px;
+}
+
+.input-label {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #b0bec5;
+    -fx-padding: 0 10px 0 0;
+}
+
+.city-field {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #2c3e50;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #78909c;
+    -fx-border-color: #546e7a;
+    -fx-border-radius: 4px;
+    -fx-padding: 10px 15px;
+    -fx-pref-width: 180px;
+    -fx-min-width: 150px;
+}
+
+.city-field:focused {
+    -fx-border-color: #f57c00;
+    -fx-border-width: 2px;
+}
+
+.refresh-button {
+    -fx-font-family: 'Arial Narrow', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-color: #f57c00;
+    -fx-text-fill: #0a1a2a;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+    -fx-min-width: 130px;
+}
+
+.refresh-button:hover {
+    -fx-background-color: #ff9800;
+}
+
+.refresh-button:disabled {
+    -fx-background-color: #546e7a;
+    -fx-text-fill: #90a4ae;
+    -fx-cursor: default;
+}
+
+/* ========== CENTER SECTION ========== */
+.center-section {
+    -fx-background-color: #1a2b3c;
+    -fx-background-radius: 10px;
+    -fx-border-color: #37474f;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.3, 0, 3);
+    -fx-padding: 20px;
+    -fx-min-width: 500px;
+}
+
+.temperature {
+    -fx-font-family: 'Arial Narrow', sans-serif;
+    -fx-font-size: 70px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 2);
+    -fx-padding: 10px 0;
+}
+
+.condition {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 18px;
+    -fx-text-fill: #b0bec5;
+    -fx-font-style: italic;
+    -fx-padding: 5px 0 15px 0;
+    -fx-min-width: 150px;
+    -fx-alignment: center;
+}
+
+.aircraft-shape {
+    -fx-fill: #f57c00;
+    -fx-stroke: #ff9800;
+    -fx-stroke-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(245, 124, 0, 0.5), 10, 0.5, 0, 0);
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+    -fx-margin: 15px 0;
+}
+
+/* ========== FLIGHT INFO GRID - COMPLETELY FIXED ========== */
+.flight-info {
+    -fx-background-color: linear-gradient(to bottom, #2c3e50, #1a252f);
+    -fx-background-radius: 8px;
+    -fx-padding: 20px 25px;
+    -fx-border-color: #455a64;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.2, 0, 1);
+    -fx-min-width: 400px;
+    -fx-min-height: 160px;
+}
+
+/* FIXED: Info Title Labels - Wind Speed & Direction now fully visible */
+.info-title {
+    -fx-font-family: 'Arial Narrow', sans-serif;
+    -fx-font-size: 15px; /* Smaller font for long text */
+    -fx-font-weight: bold;
+    -fx-text-fill: #90a4ae;
+    -fx-padding: 10px 15px 10px 5px;
+    -fx-alignment: center-left;
+    -fx-wrap-text: true; /* Allows text to wrap to multiple lines */
+    -fx-text-alignment: left;
+    -fx-min-width: 170px;
+    -fx-max-width: 200px;
+    -fx-pref-height: 40px;
+}
+
+/* Special styling for the first row (Wind Speed & Direction) */
+.info-title:first-of-type {
+    -fx-pref-height: 45px;
+    -fx-font-size: 14px; /* Even smaller for the longest text */
+}
+
+/* FIXED: Info Value Labels */
+.info-value {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10px 5px;
+    -fx-alignment: center-left;
+    -fx-min-width: 120px;
+    -fx-max-width: 140px;
+    -fx-wrap-text: true;
+}
+
+/* ========== FLIGHT STATUS INDICATORS ========== */
+.flight-status-good,
+.flight-status-marginal,
+.flight-status-poor {
+    -fx-font-family: 'Arial Narrow', sans-serif;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-min-width: 90px;
+    -fx-max-width: 120px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
+
+.flight-status-good {
+    -fx-text-fill: #4caf50;
+    -fx-background-color: linear-gradient(to bottom, #1b5e20, #0d3111);
+    -fx-border-color: #2e7d32;
+}
+
+.flight-status-marginal {
+    -fx-text-fill: #ff9800;
+    -fx-background-color: linear-gradient(to bottom, #ff6f00, #e65100);
+    -fx-border-color: #ff9800;
+}
+
+.flight-status-poor {
+    -fx-text-fill: #f44336;
+    -fx-background-color: linear-gradient(to bottom, #b71c1c, #7f0000);
+    -fx-border-color: #d32f2f;
+}
+
+/* ========== BOTTOM SECTION ========== */
+.bottom-section {
+    -fx-background-color: #1a2b3c;
+    -fx-border-color: #f57c00;
+    -fx-border-width: 2px 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.3, 0, -2);
+    -fx-min-height: 130px;
+}
+
+.forecast-day {
+    -fx-background-color: linear-gradient(to bottom, #2c3e50, #1a252f);
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+    -fx-min-width: 120px;
+    -fx-min-height: 110px;
+    -fx-border-color: #455a64;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.2, 0, 2);
+}
+
+.forecast-day:hover {
+    -fx-background-color: linear-gradient(to bottom, #34495e, #212f3d);
+    -fx-border-color: #f57c00;
+}
+
+.forecast-day-label {
+    -fx-font-family: 'Arial Narrow', sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f57c00;
+    -fx-padding: 0 0 8px 0;
+    -fx-min-width: 50px;
+    -fx-alignment: center;
+}
+
+.forecast-temp {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0 0 8px 0;
+    -fx-min-width: 60px;
+    -fx-alignment: center;
+}
+
+.forecast-condition {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #b0bec5;
+    -fx-font-style: italic;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-max-width: 100px;
+    -fx-min-height: 40px;
+}
+
+/* ========== GUARANTEED TEXT VISIBILITY ========== */
+/* Force all text to be fully visible */
+Label {
+    -fx-wrap-text: true;
+    -fx-text-overrun: clip;
+}
+
+/* Ensure GridPane has proper spacing */
+GridPane {
+    -fx-hgap: 15px;
+    -fx-vgap: 10px;
+}
+
+/* Grid cell styling */
+GridPane > * {
+    -fx-padding: 8px;
+}
